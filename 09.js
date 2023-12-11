@@ -3,12 +3,12 @@ let a = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27
         81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100];
         
 
-let multiple3= a.filter(e => e % 3 == 0);
+let b3= a.filter(e => e % 3 == 0);
 
-console.log(multiple3);
+console.log(b3);
 
-let multiple5= a.filter(function(e) {
+let b5= a.filter(function(e) {
     return e % 5 == 0;
 });
 
-console.log(multiple5);
+console.log(b5);
