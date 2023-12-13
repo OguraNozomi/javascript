@@ -56,17 +56,26 @@ var itemListElement = document.getElementById('itemList');
 // 大分類のoptionを追加する関数
 function setMainMenu() {
     // 取得したselectの子要素（option）を空白にすることによってすべて削除
-    cate1Element.innerHTML = '';
+     cate1Element.innerHTML = '';
 
     // 大分類の配列に保存されている数だけoptionとして追加する
-    for (let i = 0; i < cate1.length; i++) {
-        // option要素を新規に作成
-        let option = document.createElement('option');
-        option.value = cate1[i];    // optionの値に配列の値を代入
-        option.text = cate1[i];     // optionの表示文字列に配列の値を代入
-        cate1Element.appendChild(option); // select要素の子要素としてoption要素を追加        
-    }
+    // for (let i = 0; i < cate1.length; i++) {
+    //     // option要素を新規に作成
+    //     let option = document.createElement('option');
+    //     option.value = cate1[i];    // optionの値に配列の値を代入
+    //     option.text = cate1[i];     // optionの表示文字列に配列の値を代入
+    //     cate1Element.appendChild(option); // select要素の子要素としてoption要素を追加        
+    // }
+    
+    cate1.forEach(function(e){
+         let option = document.createElement('option');
+          option.value = e; 
+          option.text = e;  
+          cate1Element.appendChild(option);
+          
+    });
 }
+
 
 // 小分類のoptionを追加する関数
 function setSubMenu(idx) {
@@ -74,29 +83,48 @@ function setSubMenu(idx) {
     cate2Element.innerHTML = '';
 
     // 大分類の配列に保存されている数だけoptionとして追加する
-    for (let i = 0; i < cate2[idx].length; i++) {
-        // option要素を新規に作成
-        let option = document.createElement('option');
-        option.value = cate2[idx][i];    // optionの値に配列の値を代入
-        option.text = cate2[idx][i];     // optionの表示文字列に配列の値を代入
-        cate2Element.appendChild(option); // select要素の子要素としてoption要素を追加        
-    }
+    // for (let i = 0; i < cate2[idx].length; i++) {
+    //     // option要素を新規に作成
+    //     let option = document.createElement('option');
+    //     option.value = cate2[idx][i];    // optionの値に配列の値を代入
+    //     option.text = cate2[idx][i];     // optionの表示文字列に配列の値を代入
+    //     cate2Element.appendChild(option); // select要素の子要素としてoption要素を追加        
+    // }
+     cate2[idx].forEach(function(e){
+         let option = document.createElement('option');
+          option.value = e; 
+          option.text = e;  
+          cate2Element.appendChild(option);
+          
+    });
+    
 }
 
 //　商品一覧の表示の巻子
 function viewItemList(tag) {
     itemListElement.innerHTML = '';
-    for (let i = 0; i < itemList.length; i++) {
-        if (itemList[i].tags.some(t => t === tag)) {
+    // for (let i = 0; i < itemList.length; i++) {
+    //     if (itemList[i].tags.some(t => t === tag)) {
+    //         // li要素を作成
+    //         let li = document.createElement('li');
+    //         // テキスト情報を作成
+    //         let text = document.createTextNode(itemList[i].id + ':' + itemList[i].name + ':\xA5' + itemList[i].price);
+    //         // ul要素に追加
+    //         li.appendChild(text);
+    //         itemListElement.appendChild(li);
+    //     }
+    // }
+    itemList.forEach(function(e){
+      if (e.tags.some(t => t === tag)) {
             // li要素を作成
             let li = document.createElement('li');
             // テキスト情報を作成
-            let text = document.createTextNode(itemList[i].id + ':' + itemList[i].name + ':\xA5' + itemList[i].price);
+            let text = document.createTextNode(e.id + ':' + e.name + ':\xA5' + e.price);
             // ul要素に追加
             li.appendChild(text);
             itemListElement.appendChild(li);
-        }
-    }
+       }
+    });
 }
 
 //--- イベントリスナーの定義 ---
