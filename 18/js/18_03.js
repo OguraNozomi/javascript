@@ -106,8 +106,21 @@ cate2Element.addEventListener('change', function(){
     viewItemList(val);
 });
 
-// 大分類取得
 $(function () {
+    //商品一覧をファイルから取得
+    $.ajax({
+        url: 'json/item.json',
+        dataType: 'json',
+    })
+    .done(function (data) {
+        itemList = data;
+    })
+    .fail(function () {
+        alert("ファイルが読み込めませんでした");
+    });
+    console.log('itemList');
+
+    // 大分類取得
     $.ajax({
         url: 'json/cate1.json',
         dataType: 'json'
@@ -115,12 +128,16 @@ $(function () {
     .done(function (data) {
       //console.log(data[0]);
     　let data_values = Object.values(data[0]);
-    　//console.log(data_values);
+    　console.log(data[0]);
+    　console.log(data_values);
       cate1 = data_values;
+      // 大分類の生成
+      setMainMenu(); 
     })
     .fail(function () {
         alert("ファイルが読み込めませんでした");
     });
+    console.log('cate1');
 
 
 // 小分類取得
@@ -138,24 +155,8 @@ $(function () {
     .fail(function () {
         alert("ファイルが読み込めませんでした");
     });
+    console.log('cate2');
 
-
-
-//商品一覧をファイルから取得
-
-    $.ajax({
-        url: 'json/item.json',
-        dataType: 'json',
-    })
-    .done(function (data) {
-        itemList = data;
-        // 大分類の生成
-        setMainMenu(); 
-    })
-    .fail(function () {
-        alert("ファイルが読み込めませんでした");
-    });
-    
    
 });
 
